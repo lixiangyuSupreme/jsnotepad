@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>jsnotepad</title>
+  <!--状态栏-->
+  <link rel="stylesheet" href="./css/from.css">
+  <link rel="stylesheet" href="./css/state.css">
+  <!--菜单栏-->
+  <link rel="stylesheet" href="./css/common.css">
+  <link rel="stylesheet" href="./css/search.css">
+  <link rel="stylesheet" href="./css/bar.css">
+  <!--编辑区-->
+  <link rel="stylesheet" href="./css/error.css">
+  <!--字体对话框-->
+  <link rel="stylesheet" href="./css/flim.css">
+  <link rel="stylesheet" href="./css/accros.css">
+</head>
+<body>
+    <!--菜单栏-->
+    <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="./js/app.js"></script>
+    <script src="./js/mean.js"></script>
+    <script src="./js/search.js"></script>
+    <script src="./js/bar.js"></script>
+    <!--编辑区-->
+    <script src="./js/error.js"></script>
+    <!--状态栏-->
+    <script src="./js/state.js"></script>
+    <!--对话框-->
+    <script src="./js/flim.js"></script>
+    <script src="./js/accros.js"></script>
+    <script>
+    $(function() {
+        //菜单栏
+        $statusBar.init();
+        $statusBar.display(false);
+        $menubar.enabled(4, 0, false);
+        $menubar.enabled(1, 0, true);
+        //编辑区
+        $editor.show();
+        //状态栏
+        var bVisable = true;
+        $statusBar.init({row: 300, col: 100});
+
+        var $btnTest = $('#btn-test');
+
+        $btnTest.click(function() {
+        bVisable = !bVisable;
+        $statusBar.display(bVisable);
+
+        var title = bVisable ? '隐藏状态栏' : '显示状态栏';
+        $btnTest.val(title);
+        });
+
+        var $btnSetRC = $('#set-rc');
+
+        $btnSetRC.click(function() {
+        $statusBar.setRowCol($('#row').val(), $('#col').val());
+        });
+        //对话框
+        $btnTest = $('div.test>input[type="button"]');
+
+        $btnTest.click(function() {
+        $dlgFont.show({
+            okHandler: function(e) {
+            console.log(e);
+            }
+        });
+        });
+    });
+    </script>
+</body>
+</html>
+
